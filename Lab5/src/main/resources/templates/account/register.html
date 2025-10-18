@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        h2 { color: #2a7ae2; }
+        label { display: inline-block; width: 120px; }
+        input[type="text"], input[type="password"], input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            background: #2a7ae2;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #1956a0; }
+    </style>
+</head>
+<body>
+<h2>Đăng ký tài khoản</h2>
+
+<form action="/account/register" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Tên đăng nhập:</label>
+        <input name="username" required>
+    </div>
+    <div>
+        <label>Mật khẩu:</label>
+        <input name="password" type="password" required>
+    </div>
+    <div>
+        <label>Ảnh đại diện:</label>
+        <input type="file" name="photo" accept="image/*">
+    </div>
+    <button type="submit">Đăng ký</button>
+</form>
+
+<!-- ✅ Thông báo -->
+<p th:text="${message}" style="color: green;"></p>
+
+<!-- ✅ Hiển thị ảnh sau khi upload -->
+<div th:if="${photoPath}">
+    <p>Ảnh đã upload:</p>
+    <img th:src="${photoPath}" width="200">
+</div>
+
+<!-- ✅ Nút chuyển đến trang đăng nhập -->
+<hr>
+<p>Đã có tài khoản? <a href="/account/login">Đăng nhập</a>.</p>
+
+</body>
+</html>
